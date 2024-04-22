@@ -11,6 +11,13 @@ function getAbsolutePath(value: string): any {
 }
 const config: StorybookConfig = {
   stories: ["../src/pages/**/*.mdx", "../src/stories/**/*.stories.tsx"],
+  async viteFinal(config, { configType }) {
+    if (configType === 'PRODUCTION') {
+      config.base = '/-ezidro-ui/'
+    }
+
+    return config
+  },
   addons: [
     getAbsolutePath("@storybook/addon-onboarding"),
     getAbsolutePath("@storybook/addon-links"),
